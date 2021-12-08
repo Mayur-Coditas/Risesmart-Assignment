@@ -1,0 +1,30 @@
+.container {
+    max-width: 450px;
+    background: #FAFAFA;
+    padding: 30px;
+    margin: 10px auto;
+    box-shadow: 1px 1px 25px rgba(0, 0, 0, 0.35);
+    border-radius: 10px;
+    border: 1px solid #305A72;
+}
+
+.heading {
+    max-width: 450px;
+    text-align: center;
+    margin: 5px auto;
+    
+}
+
+.btn-text-center {
+    text-align: center;
+    }
+
+.dashboard-button {
+    text-align: center;
+    padding: 30px;
+}
+
+.table-container {
+    width: 90%;
+    margin: 10px auto;
+}
