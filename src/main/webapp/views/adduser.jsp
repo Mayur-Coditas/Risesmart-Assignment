@@ -33,7 +33,7 @@
         <div class="col-lg-8
 		m-auto d-block">
 
-            <form>
+            
                 <div class="form-group">
                     <label>
                         First Name:
@@ -84,6 +84,7 @@
                     </small>
                 </div>
 
+
                 <div class="form-group">
                     <label>
                         Password:
@@ -98,7 +99,7 @@
 
                     <div class="checkbox">
                         <label>
-                            <input type="checkbox" value="admin"> Admin Login
+                            <input type="checkbox" id="admin"> Admin Login
                         </label>
                     </div>
 
@@ -108,13 +109,12 @@
                 <div class="btn-text-center">
                     <input type="submit" id="submitbtn" value="Submit" class="btn btn-primary">
                 </div>
-            </form>
+           
         </div>
     </div>
 
 
     <script src="/js/adduser.js"></script>
-
 
 
 

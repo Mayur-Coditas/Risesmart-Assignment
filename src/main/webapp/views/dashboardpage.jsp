@@ -31,7 +31,7 @@
 
     <div class="container ">
         <div class="dashboard-button">
-            <a href="/">
+            <a href="/user">
                 <input type="submit" id="submitbtn" value="Add User" class="btn btn-primary">
             </a>
         </div>
