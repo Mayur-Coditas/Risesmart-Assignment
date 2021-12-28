@@ -8,6 +8,8 @@ $(document).ready(function () {
     $('#passwordCheck').hide();
 
 
+    // var valid = true;
+
 
     var fname_error = true;
     var lname_error = true;
@@ -15,6 +17,33 @@ $(document).ready(function () {
     var mobile_error = true;
     var email_error = true;
     var password_error = true;
+
+    // $('#fnames,#lnames,#addresses,#mobiles,#emails,#passwords').keyup(function() {
+    //     if(fnameCheck() &&
+    //     lnameCheck()&&
+    //     addressCheck()&&
+    //     mobileCheck()&&
+    //     emailCheck()&&
+    //     passwordCheck()){
+    //         $('#submitbtn').removeAttr('disabled');
+    //     } else{
+    //         $('#submitbtn').prop("disabled", true);
+    //     }
+    // });
+
+
+    // function allFilled() {
+    //     var filled = true;
+    //     $('body input').each(function() {
+    //         if($(this).val() == ''){
+    //             filled = false;
+    //         }
+
+    //     });
+    //     return filled;
+    // }
+
+
 
     $('#fnames').keyup(function () {
         fnameCheck();
@@ -43,6 +72,30 @@ $(document).ready(function () {
 
 
 
+
+
+    // $('#userform :input').keyup(function(){
+    //     var empty = false;
+    //     $('#userform :input').each(function(){
+    //         if($(this).val == ''){
+    //             empty = true;
+    //         }
+    //     });
+
+    //     if(empty){
+    //         $('#submitbtn').attr('disabled','disabled');
+    //     }
+    //     else{
+    //         $('#submitbtn').removeAttr('disabled');
+    //     }
+
+
+    // });
+
+
+
+
+
     function fnameCheck() {
         var fnameval = $('#fnames').val();
 
@@ -59,6 +112,7 @@ $(document).ready(function () {
         }
         else {
             $('#fnameCheck').hide();
+            return true;
         }
     }
 
@@ -78,6 +132,7 @@ $(document).ready(function () {
         }
         else {
             $('#lnameCheck').hide();
+            return true;
         }
     }
 
@@ -97,6 +152,7 @@ $(document).ready(function () {
         }
         else {
             $('#addressCheck').hide();
+            return true;
         }
     }
 
@@ -106,11 +162,12 @@ $(document).ready(function () {
 
         if (!filter.test(mobilevar) || mobilevar.length > 10) {
             $('#mobileCheck').show();
-            $('#mobileCheck').html("Mobile number should be 10 digit")
+            $('#mobileCheck').html("Mobile number should be 10 digit");
             mobile_error = false;
             return false;
         } else {
             $('#mobileCheck').hide();
+            return true;
         }
     }
 
@@ -125,6 +182,7 @@ $(document).ready(function () {
             return false;
         } else {
             $('#emailCheck').hide();
+            return true;
         }
     }
 
@@ -138,13 +196,14 @@ $(document).ready(function () {
             return false;
         } else {
             $('#passwordCheck').hide();
+            return true;
         }
     }
 
 
-
-
     $('#submitbtn').click(function () {
+
+
         fname_error = true;
         lname_error = true;
         address_error = true;
@@ -161,11 +220,47 @@ $(document).ready(function () {
 
         if ((fname_error == true) && (lname_error == true) && (address_error == true)
             && (mobile_error == true) && (email_error == true) && (password_error == true)) {
+
+            var user = {};
+            user.firstName = $("#fnames").val();
+            user.lastName = $("#lnames").val();
+            user.address = $("#addresses").val();
+            user.mobileNumber = $("#mobiles").val();
+            user.email = $("#emails").val();
+            user.password = $("#passwords").val();
+            user.admin = $("#admin").val();
+
+            
+
+            if ($('#admin').is(':checked')) {
+                user.admin = true;
+            } else {
+                user.admin = false;
+            }
+
+
+
+            var userObj = JSON.stringify(user);
+
+            $.ajax({
+                method: "POST",
+                contentType: "application/json; charset=utf-8",
+                url: "http://localhost:8080/api/user/register",
+                data: userObj,
+                success: function () {
+                    alert('saved successfully');
+                },
+                error: function (error) {
+                    alert(error);
+                }
+
+            });
             return true;
         } else {
+
             return false;
         }
-
     });
+
 
 });
